@@ -1,7 +1,7 @@
 Welcome to OEG SDK for Android's documentation!
 ===================================
 
-**EG SDK for Android** is a Android library for OEG's games.
+**OEG SDK for Android** is a Android library for OEG's games.
 
 Check out how to :doc:`installation` the project section for and the :doc:`usage` further information.
 
