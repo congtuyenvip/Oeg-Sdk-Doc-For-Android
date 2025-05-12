@@ -21,23 +21,25 @@ These Services may need to be enabled to allow the SDK to function
 Import sdk
 """""""""""""""""
 
-This can be easy done by adding implementation block to your app/game module:
+This can be easy done by adding implementation block to your app/game module
 
-.. code-block:: 
-      android {
-         // ...
-      }
+.. code-block::
 
-      dependencies {
-         // Replace <latest_version> with latest sdk version
-         implementation("io.github.congtuyenvip:oeg-sdk:<latest_version>")
-      }
+   android {
+      // ...
+   }
+
+   dependencies {
+      // Replace <latest_version> with latest sdk version
+      implementation("io.github.congtuyenvip:oeg-sdk:<latest_version>")
+   }
 
 Configuration
 """""""""""""""""
 - Resource configuration: Add and change sdk_conf.xml 's value base on your config into <app>/src/<*>/res/values. For example
 
 .. code-block::
+
    <?xml version="1.0" encoding="utf-8"?>
    <resources>
       <!-- for push notification -->
