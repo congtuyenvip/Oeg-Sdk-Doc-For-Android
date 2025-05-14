@@ -34,6 +34,21 @@ This can be easy done by adding implementation block to your app/game module
       implementation("io.github.congtuyenvip:oeg-sdk:<latest_version>")
    }
 
+add in setting.gradle.kts
+
+.. code-block::
+
+   dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url = uri("https://jitpack.io") }
+    }
+}
+
+
+
 Configuration
 """""""""""""""""
 - Resource configuration: Add and change sdk_conf.xml 's value base on your config into <app>/src/<*>/res/values. For example
