@@ -86,7 +86,9 @@ Configuration
                 SunGameSDK.init(this)
                 // Other init code
             }
-         }                
+         }
+
+- **Importance: Make sure to add the app's fingerprint to Firebase's app settings to enable Google login.** Detail instructions are `here <https://support.google.com/firebase/answer/9137403?hl=en>`_                 
 
 .. autosummary::
    :toctree: generated
