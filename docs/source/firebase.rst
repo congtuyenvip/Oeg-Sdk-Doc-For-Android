@@ -30,18 +30,18 @@ Configuration
 
 .. code-block:: java
     
-        SunGameSDK.registerNewPushDeviceTokenCallback(newTokenCallback)    
-        SunGameSDK.unregisterNewPushDeviceTokenCallback()  
+        OegSdk.registerNewPushDeviceTokenCallback(newTokenCallback)    
+        OegSdk.unregisterNewPushDeviceTokenCallback()  
 - Get push notification - firebase token
 
 .. code-block:: java
     
-        public String SunGameSDK.getPushDeviceToken()    
+        OegSdk.getPushDeviceToken(callback)    
         
 - Register callback when received push notification message. By default it will show notification with title and body data
 
 .. code-block:: java
 
-        SunGameSDK.registerOnPushNotificationMessageReceivedCallback(callback)
+        OegSdk.registerOnPushNotificationMessageReceivedCallback(callback)
         
         

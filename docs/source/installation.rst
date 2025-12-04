@@ -83,7 +83,7 @@ Configuration
         class <your app class name> : Application() {
             override fun onCreate() {
                 super.onCreate()
-                SunGameSDK.init(this)
+                OegSdk.init(this)
                 // Other init code
             }
          }
