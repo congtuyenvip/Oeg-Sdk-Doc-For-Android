@@ -77,24 +77,29 @@ Call this method to start the payment process
     
         // gameData: an object contain user information
         // callback: a callback return the status and data of IAP flow
-        // productId: optional product id
         // intentFlag: optional intent flags
         // (orientation is optional for showing UI in prefer screen orientation ( PROTRAIT or LANDSCAPE), default is PORTRAIT
-        OegSdk.showPayment(gameData: GameData, callback: IabCallBack, productId = null, intentFlag = null, orientation = OegSdk.ScreenOrientation.PORTRAIT)
+        OegSdk.showPayment(gameData: GameData, callback: IabCallBack, intentFlag = null, orientation = OegSdk.ScreenOrientation.PORTRAIT)
 
 .. code-block:: kotlin
 
         // the content of this class is depended on the partner
         @Parcelize
         open class GameData(
-            @SerializedName("server_id")
-            val serverId: Int,
-            @SerializedName("level")
-            val level: Int,
-            @SerializedName("role_id")
-            val roleId: Int,
-            @SerializedName("account_id")
-            val accountId: Int = 0
+                @SerializedName("server_id")
+                val serverId: Long,
+                @SerializedName("level")
+                val level: Long,
+                @SerializedName("role_id")
+                val roleId: Long,
+                @SerializedName("account_id")
+                val accountId: Long = 0,
+                @SerializedName("ext_info")
+                val extInfo: String = "",
+                @SerializedName("product_id")
+                var productId: String = "",
+                @SerializedName("platform")
+                val platform: String = "Android"
         ) : Parcelable
         
 .. code-block:: java
