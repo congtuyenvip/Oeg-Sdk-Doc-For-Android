@@ -91,9 +91,9 @@ Call this method to start the payment process
                 @SerializedName("level")
                 val level: Long,
                 @SerializedName("role_id")
-                val roleId: Long,
+                val roleId: String,
                 @SerializedName("account_id")
-                val accountId: Long = 0,
+                val accountId: String = "",
                 @SerializedName("ext_info")
                 val extInfo: String = "",
                 @SerializedName("product_id")
