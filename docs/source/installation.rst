@@ -80,7 +80,32 @@ Configuration
 
       <!-- environment config -->
       <bool name="debug_env">false</bool>
+
+      <!-- User info field requirements -->
+      <!-- Configure which fields are required when updating user information -->
+      <!-- Set to true to make the field required, false to make it optional -->
+      <bool name="user_info_full_name_required">true</bool>
+      <bool name="user_info_birthday_required">true</bool>
+      <bool name="user_info_email_required">true</bool>
+      <bool name="user_info_phone_required">true</bool>
    </resources>
+
+**User Info Field Requirements**
+
+The SDK allows you to configure which user information fields are required when users update their profile. This is done through boolean configuration values in ``sdk_conf.xml``:
+
+- **``user_info_full_name_required``**: Controls whether the full name field is required (default: ``true``)
+- **``user_info_birthday_required``**: Controls whether the birthday field is required (default: ``true``)
+- **``user_info_email_required``**: Controls whether the email field is required (default: ``true``)
+- **``user_info_phone_required``**: Controls whether the phone number field is required (default: ``true``)
+
+**Important Notes:**
+
+- Username is always required and cannot be configured
+- When a field is set as required (``true``), users must fill in and verify that field before they can save their profile
+- When a field is set as optional (``false``), users can skip that field
+- Empty string values in user information will be automatically converted to ``null`` when sent to the server
+- Each required field has its own specific error message if validation fails
 
 Sentry and Logging
 """""""""""""""""
