@@ -8,11 +8,11 @@ Call this method to show the authentication screen
 
 .. code-block:: java
     
-        // authenticationCallBack is interface which have 3 call back for login and register
-        // onLoginResult(authenticationResult, provider) see funcation's docs
-        // onRegisterResult(authenticationResult) see funcation's docs
-        // onChangePassResult(changePasswordResult: WorkResult<Boolean>)
-        // (orientation is optional for showing UI in prefer screen orientation ( PROTRAIT or LANDSCAPE), default is PORTRAIT
+        // authenticationCallBack is an interface which has 2 callbacks:
+        // - onAuthenticationResult(action, authenticationResult, provider): called when login or register finishes
+        // - onChangePassResult(changePasswordResult): called when change password finishes
+        //
+        // (orientation is optional for showing UI in preferred screen orientation (PORTRAIT or LANDSCAPE), default is PORTRAIT
         // intentFlag is optional for intent flags
         OegSdk.showLogin(authenticationCallBack, intentFlag = null, orientation = OegSdk.ScreenOrientation.PORTRAIT)
 
@@ -20,25 +20,31 @@ which callback is:
         
 .. code-block:: kotlin
     
-        interface AuthenticationCallBack {
+        enum class AuthenticationAction {
+            LOGIN,
+            REGISTER
+        }
 
+        interface AuthenticationCallBack {
+        
             /**
              * Call back when change password finish
-             * @param authenticationResult: if succeed changePasswordResult.data() will return true else error can be obtained by changePasswordResult.error()
+             * @param changePasswordResult: if succeed changePasswordResult.data() will return true else error can be obtained by changePasswordResult.error()
              */
             fun onChangePassResult(changePasswordResult: WorkResult<Boolean>)
-            /**
-             * Call back when login with or without sns finish
-             * @param authenticationResult: if succeed authentication info can be obtained by authenticationResult.data() else error can be obtained by authenticationResult.error()
-             * @param provider: if login without sns then it's null else it's string of provider for ex: "google" or "facebook"
-             */
-            fun onLoginResult(authenticationResult: WorkResult<AuthenticationInfo>, provider: String?)
 
             /**
-             * Call back when login with or without sns finish
+             * Call back when login or register finishes
+             *
+             * @param action: indicates whether this is a login or register action
              * @param authenticationResult: if succeed authentication info can be obtained by authenticationResult.data() else error can be obtained by authenticationResult.error()
+             * @param provider: if login without SNS then it's null, else it's a string of provider, for example: "google" or "facebook". For REGISTER this is always null.
              */
-            fun onRegisterResult(authenticationResult: WorkResult<AuthenticationInfo>)
+            fun onAuthenticationResult(
+                action: AuthenticationAction,
+                authenticationResult: WorkResult<AuthenticationInfo>,
+                provider: String?
+            )
         }
 
 and WorkResult is:
@@ -177,3 +183,9 @@ Use this method to get stored ApiToken & stored uuid (return null if user haven'
 .. code-block:: java
 
         OegSdk.getAuthenticationInfo()
+
+Use this method to get saved user information, or fall back to minimal information from authentication if user info has not been fetched yet (return null if user haven't login yet)
+
+.. code-block:: java
+
+        OegSdk.getSavedUserInfo()
