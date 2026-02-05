@@ -153,12 +153,12 @@ Call this method to show the update user info screen
 
 **User Info Field Requirements Configuration**
 
-You can configure which fields are required when users update their information by setting boolean values in ``sdk_conf.xml``:
+You can configure which fields are required when users update their information by setting boolean values in ``oeg_config.json`` (under ``coreConfig``):
 
-- ``user_info_full_name_required``: Set to ``true`` to require full name (default: ``true``)
-- ``user_info_birthday_required``: Set to ``true`` to require birthday (default: ``true``)
-- ``user_info_email_required``: Set to ``true`` to require email (default: ``true``)
-- ``user_info_phone_required``: Set to ``true`` to require phone number (default: ``true``)
+- ``userInfoFullNameRequired``: Set to ``true`` to require full name (default: ``true``)
+- ``userInfoBirthdayRequired``: Set to ``true`` to require birthday (default: ``true``)
+- ``userInfoEmailRequired``: Set to ``true`` to require email (default: ``true``)
+- ``userInfoPhoneRequired``: Set to ``true`` to require phone number (default: ``true``)
 
 **Note:** Username is always required and cannot be configured.
 
@@ -167,6 +167,18 @@ When a required field is missing or not verified, the SDK will display a specifi
 - Phone: "Please fill in and verify your phone number!"
 
 Empty strings in user information fields will be automatically converted to ``null`` when sent to the server.
+
+Logging Events
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Call this method to log custom events. The SDK automatically appends default parameters like ``app_id`` and ``user_name``.
+
+.. code-block:: java
+
+        // eventName: String name of the event
+        // params: Map<String, Any> of event parameters
+        OegSdk.logEvent("event_name", mapOf("param1" to "value1"))
+
     
 
 Logout & Other method
