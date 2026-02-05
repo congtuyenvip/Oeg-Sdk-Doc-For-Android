@@ -224,6 +224,26 @@ Call this method to log custom events. The SDK automatically appends default par
         params.put("param1", "value1");
         OegSdk.INSTANCE.logEvent("event_name", params);
     
+Logging Purchase
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Call this method to log purchase events.
+
+.. code-block:: kotlin
+
+        // price: Double - The amount of the purchase
+        // currency: String - The currency code (e.g., "USD")
+        // transactionId: String? - Optional transaction/order ID
+        // productId: String? - Optional product ID
+        // purchaseData: Map<String, Any>? - Optional additional purchase data
+        OegSdk.logPurchase(9.99, "USD", "TRANS_123456", "prod_123", mapOf("item_category" to "gold"))
+
+.. code-block:: java
+
+        Map<String, Object> purchaseData = new HashMap<>();
+        purchaseData.put("item_category", "gold");
+        OegSdk.INSTANCE.logPurchase(9.99, "USD", "TRANS_123456", "prod_123", purchaseData);
+    
 
 Logout & Other method
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
