@@ -6,7 +6,7 @@ Login and Register
 
 Call this method to show the authentication screen
 
-.. code-block:: java
+.. code-block:: kotlin
     
         // authenticationCallBack is an interface which has 2 callbacks:
         // - onAuthenticationResult(action, authenticationResult, provider): called when login or register finishes
@@ -15,6 +15,10 @@ Call this method to show the authentication screen
         // (orientation is optional for showing UI in preferred screen orientation (PORTRAIT or LANDSCAPE), default is PORTRAIT
         // intentFlag is optional for intent flags
         OegSdk.showLogin(authenticationCallBack, intentFlag = null, orientation = OegSdk.ScreenOrientation.PORTRAIT)
+
+.. code-block:: java
+
+        OegSdk.INSTANCE.showLogin(authenticationCallBack, null, OegSdk.ScreenOrientation.PORTRAIT);
 
 which callback is:
         
@@ -45,6 +49,17 @@ which callback is:
                 authenticationResult: WorkResult<AuthenticationInfo>,
                 provider: String?
             )
+        }
+
+.. code-block:: java
+
+        public interface AuthenticationCallBack {
+            void onChangePassResult(WorkResult<Boolean> changePasswordResult);
+            void onAuthenticationResult(
+                AuthenticationAction action,
+                WorkResult<AuthenticationInfo> authenticationResult,
+                String provider
+            );
         }
 
 and WorkResult is:
@@ -79,13 +94,17 @@ IAP
 
 Call this method to start the payment process
 
-.. code-block:: java
+.. code-block:: kotlin
     
         // gameData: an object contain user information
         // callback: a callback return the status and data of IAP flow
         // intentFlag: optional intent flags
         // (orientation is optional for showing UI in prefer screen orientation ( PROTRAIT or LANDSCAPE), default is PORTRAIT
         OegSdk.showPayment(gameData: GameData, callback: IabCallBack, intentFlag = null, orientation = OegSdk.ScreenOrientation.PORTRAIT)
+
+.. code-block:: java
+
+        OegSdk.INSTANCE.showPayment(gameData, iabCallBack, null, OegSdk.ScreenOrientation.PORTRAIT);
 
 .. code-block:: kotlin
 
@@ -108,7 +127,7 @@ Call this method to start the payment process
                 val platform: String = "Android"
         ) : Parcelable
         
-.. code-block:: java
+.. code-block:: kotlin
 
         interface IabCallBack {
             /**
@@ -118,24 +137,34 @@ Call this method to start the payment process
             fun onIabResult(iabResult: WorkResult<PurchaseInfo>)
         }
 
+.. code-block:: java
+
+        public interface IabCallBack {
+            void onIabResult(WorkResult<PurchaseInfo> iabResult);
+        }
+
 Change Password
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Call this method to show the change password screen
 
-.. code-block:: java
+.. code-block:: kotlin
 
         // callBack: AuthenticationCallBack
         // intentFlag: optional intent flags
         // orientation: optional screen orientation
         OegSdk.showChangePassword(callBack, intentFlag = null, orientation = OegSdk.ScreenOrientation.PORTRAIT)
 
+.. code-block:: java
+
+        OegSdk.INSTANCE.showChangePassword(callBack, null, OegSdk.ScreenOrientation.PORTRAIT);
+
 Update User Info
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Call this method to show the update user info screen
 
-.. code-block:: java
+.. code-block:: kotlin
 
         // callBack: UserCallBack
         // requestCode: optional request code
@@ -143,12 +172,22 @@ Call this method to show the update user info screen
         // orientation: optional screen orientation
         OegSdk.showUpdateUserInfo(callBack, requestCode = REQUEST_CODE_PROFILING, intentFlag = null, orientation = OegSdk.ScreenOrientation.PORTRAIT)
 
+.. code-block:: java
+
+        OegSdk.INSTANCE.showUpdateUserInfo(callBack, REQUEST_CODE_PROFILING, null, OegSdk.ScreenOrientation.PORTRAIT);
+
         interface UserCallBack {
              /**
              * Call back when update info finish
              * @param result: if succeed data will return true else error can be obtained by result.error()
              */
             fun onUpdateInfoResult(result: WorkResult<Boolean>)
+        }
+
+.. code-block:: java
+
+        public interface UserCallBack {
+            void onUpdateInfoResult(WorkResult<Boolean> result);
         }
 
 **User Info Field Requirements Configuration**
@@ -173,12 +212,17 @@ Logging Events
 
 Call this method to log custom events. The SDK automatically appends default parameters like ``app_id`` and ``user_name``.
 
-.. code-block:: java
+.. code-block:: kotlin
 
         // eventName: String name of the event
         // params: Map<String, Any> of event parameters
         OegSdk.logEvent("event_name", mapOf("param1" to "value1"))
 
+.. code-block:: java
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("param1", "value1");
+        OegSdk.INSTANCE.logEvent("event_name", params);
     
 
 Logout & Other method
@@ -186,18 +230,30 @@ Logout & Other method
 
 Use this method to clear the saved token and facebook credential when user want to switch to new account
 
-.. code-block:: java
+.. code-block:: kotlin
 
         OegSdk.logout()
 
+.. code-block:: java
+
+        OegSdk.INSTANCE.logout();
+
 Use this method to get stored ApiToken & stored uuid (return null if user haven't login yet)
 
-.. code-block:: java
+.. code-block:: kotlin
 
         OegSdk.getAuthenticationInfo()
 
+.. code-block:: java
+
+        OegSdk.INSTANCE.getAuthenticationInfo();
+
 Use this method to get saved user information, or fall back to minimal information from authentication if user info has not been fetched yet (return null if user haven't login yet)
+
+.. code-block:: kotlin
+
+        OegSdk.getSavedUserInfo()
 
 .. code-block:: java
 
-        OegSdk.getSavedUserInfo()
+        OegSdk.INSTANCE.getSavedUserInfo();

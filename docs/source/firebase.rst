@@ -18,10 +18,7 @@ Configuration
         "defaultNotificationChannelId": "default",
         "defaultNotificationTitle": "Notification"
       },
-      "snsConfig": {
-        "facebookAppId": "YOUR_FB_APP_ID",
-        "fbLoginProtocolScheme": "fbYOUR_FB_APP_ID"
-      }
+      ...
     }
 
     + Add your notification with resource identify named: "ic_stat_ic_notification" to your drawable folder. This notification icon will be used to show on status bar

@@ -157,6 +157,17 @@ You can use Timber in your application code to log messages that will automatica
             }
          }
 
+.. code-block:: java
+
+        public class <your app class name> extends Application {
+            @Override
+            public void onCreate() {
+                super.onCreate();
+                OegSdk.INSTANCE.init(this);
+                // Other init code
+            }
+        }
+
 - **Importance: Make sure to add the app's fingerprint to Firebase's app settings to enable Google login.** Detail instructions are `here <https://support.google.com/firebase/answer/9137403?hl=en>`_                 
 
 .. autosummary::
